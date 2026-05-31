@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, inject, ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ToastService, Toast } from '../services/toast.service';
 import { Subscription } from 'rxjs';
@@ -8,10 +8,13 @@ import { Subscription } from 'rxjs';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <div class="toast-overlay" #overlay>
-      <div class="toast" [class.success]="lastToast?.type === 'success'" [class.error]="lastToast?.type === 'error'">
-        <span class="toast-icon">{{ lastToast?.type === 'success' ? '✓' : '✕' }}</span>
-        <span class="toast-message">{{ lastToast?.message }}</span>
+    <div class="toast-overlay"
+      [style.opacity]="toast ? '1' : '0'"
+      [style.transform]="toast ? 'translateX(0)' : 'translateX(100%)'"
+      [style.pointer-events]="toast ? 'auto' : 'none'">
+      <div class="toast" [class.success]="toast?.type === 'success'" [class.error]="toast?.type === 'error'">
+        <span class="toast-icon">{{ toast?.type === 'success' ? '✓' : '✕' }}</span>
+        <span class="toast-message">{{ toast?.message }}</span>
       </div>
     </div>
   `,
@@ -21,15 +24,7 @@ import { Subscription } from 'rxjs';
       top: 1.5rem;
       right: 1.5rem;
       z-index: 99999;
-      opacity: 0;
-      transform: translateX(100%);
       transition: all 0.3s ease-out;
-      pointer-events: none;
-    }
-    .toast-overlay.show {
-      opacity: 1;
-      transform: translateX(0);
-      pointer-events: auto;
     }
     .toast {
       display: flex;
@@ -62,21 +57,11 @@ import { Subscription } from 'rxjs';
 })
 export class ToastComponent implements OnInit, OnDestroy {
   private toastService = inject(ToastService);
-  private el = inject(ElementRef);
-  private renderer = inject(Renderer2);
   private sub?: Subscription;
-  lastToast: Toast | null = null;
+  toast: Toast | null = null;
 
   ngOnInit(): void {
-    const overlay = this.el.nativeElement.querySelector('.toast-overlay');
-    this.sub = this.toastService.toast$.subscribe(t => {
-      this.lastToast = t;
-      if (t) {
-        this.renderer.addClass(overlay, 'show');
-      } else {
-        this.renderer.removeClass(overlay, 'show');
-      }
-    });
+    this.sub = this.toastService.toast$.subscribe(t => this.toast = t);
   }
 
   ngOnDestroy(): void {
