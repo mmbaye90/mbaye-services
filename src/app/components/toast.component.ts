@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, inject } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject, ElementRef, Renderer2 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ToastService, Toast } from '../services/toast.service';
 import { Subscription } from 'rxjs';
@@ -8,10 +8,10 @@ import { Subscription } from 'rxjs';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <div class="toast-overlay" [class.visible]="!!toast">
-      <div class="toast" [class.success]="toast?.type === 'success'" [class.error]="toast?.type === 'error'">
-        <span class="toast-icon">{{ toast?.type === 'success' ? '✓' : '✕' }}</span>
-        <span class="toast-message">{{ toast?.message }}</span>
+    <div class="toast-overlay" #overlay>
+      <div class="toast" [class.success]="lastToast?.type === 'success'" [class.error]="lastToast?.type === 'error'">
+        <span class="toast-icon">{{ lastToast?.type === 'success' ? '✓' : '✕' }}</span>
+        <span class="toast-message">{{ lastToast?.message }}</span>
       </div>
     </div>
   `,
@@ -26,7 +26,7 @@ import { Subscription } from 'rxjs';
       transition: all 0.3s ease-out;
       pointer-events: none;
     }
-    .toast-overlay.visible {
+    .toast-overlay.show {
       opacity: 1;
       transform: translateX(0);
       pointer-events: auto;
@@ -62,11 +62,21 @@ import { Subscription } from 'rxjs';
 })
 export class ToastComponent implements OnInit, OnDestroy {
   private toastService = inject(ToastService);
+  private el = inject(ElementRef);
+  private renderer = inject(Renderer2);
   private sub?: Subscription;
-  toast: Toast | null = null;
+  lastToast: Toast | null = null;
 
   ngOnInit(): void {
-    this.sub = this.toastService.toast$.subscribe(t => this.toast = t);
+    const overlay = this.el.nativeElement.querySelector('.toast-overlay');
+    this.sub = this.toastService.toast$.subscribe(t => {
+      this.lastToast = t;
+      if (t) {
+        this.renderer.addClass(overlay, 'show');
+      } else {
+        this.renderer.removeClass(overlay, 'show');
+      }
+    });
   }
 
   ngOnDestroy(): void {

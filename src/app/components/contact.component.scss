@@ -48,6 +48,8 @@
   }
   .contact-form-col {
     flex: 1;
+    position: relative;
+    z-index: 2;
     h3 {
       color: #fff;
       font-size: 1.5rem;
@@ -81,6 +83,8 @@
           resize: vertical;
         }
         .btn {
+          position: relative;
+          z-index: 2;
           padding: 0.75rem 2.5rem;
           background: transparent;
           border: 1px solid $accent-yellow;
@@ -90,6 +94,8 @@
           font-size: 0.9rem;
           cursor: pointer;
           transition: all 0.3s ease;
+          user-select: none;
+          -webkit-tap-highlight-color: transparent;
           &:hover:not(:disabled) {
             background: $accent-yellow;
             color: #000;
