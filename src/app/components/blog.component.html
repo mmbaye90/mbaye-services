@@ -1,0 +1,31 @@
+<section id="blog" class="blog section">
+  <div class="intro">
+    <div class="scroll-wrap">
+      <div class="container">
+        <div class="blog-header">
+          <h2>Journal</h2>
+          <a href="#" class="btn">View all</a>
+        </div>
+        <div class="blog-grid">
+          <div class="blog-col" *ngFor="let post of blogPosts; let i = index">
+            <figure>
+              <a href="#" class="image-link">
+                <img [src]="post.image" [alt]="post.title" class="w-100">
+              </a>
+              <figcaption>
+                <p class="blog-meta">{{ post.category }} / {{ post.date }}</p>
+                <h4>{{ post.title }}</h4>
+                <a [href]="post.link || '#'" class="read-more">
+                  Read more
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </a>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

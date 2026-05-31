@@ -1,0 +1,21 @@
+<section id="experience" class="experience section">
+  <div class="intro">
+    <div class="scroll-wrap">
+      <div class="container">
+        <h2>Experience</h2>
+        <div class="experience-items">
+          <div class="experience-item" *ngFor="let exp of experiences">
+            <div class="exp-logo">
+              <img [src]="exp.logo" [alt]="exp.company" />
+            </div>
+            <div class="exp-info">
+              <span class="exp-year">{{ exp.year }}</span>
+              <h3 class="exp-company">{{ exp.company }}</h3>
+              <p class="exp-description">{{ exp.description }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

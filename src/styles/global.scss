@@ -1,0 +1,418 @@
+@use 'variables.scss' as *;
+@use 'mixins.scss' as *;
+@use 'animations.scss' as *;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  @include custom-scrollbar;
+}
+
+body {
+  font-family: $font-primary;
+  background: linear-gradient(135deg, $bg-dark 0%, $bg-darker 100%);
+  color: $text-white;
+  font-size: $font-size-base;
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+
+  @include custom-scrollbar;
+}
+
+// Headings
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: $spacing-md;
+  letter-spacing: -0.5px;
+}
+
+h1 {
+  font-size: $font-size-4xl;
+
+  @media (max-width: $tablet) {
+    font-size: $font-size-3xl;
+  }
+
+  @media (max-width: $mobile) {
+    font-size: $font-size-2xl;
+  }
+}
+
+h2 {
+  font-size: $font-size-3xl;
+
+  @media (max-width: $tablet) {
+    font-size: $font-size-2xl;
+  }
+
+  @media (max-width: $mobile) {
+    font-size: $font-size-xl;
+  }
+}
+
+h3 {
+  font-size: $font-size-2xl;
+
+  @media (max-width: $mobile) {
+    font-size: $font-size-lg;
+  }
+}
+
+h4,
+h5,
+h6 {
+  font-size: $font-size-lg;
+}
+
+p {
+  margin-bottom: $spacing-md;
+  color: $text-gray;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Links
+a {
+  color: $accent-yellow;
+  text-decoration: none;
+  transition: color $transition;
+
+  &:hover {
+    color: $accent-cyan;
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+    border-radius: $radius-sm;
+  }
+}
+
+// Lists
+ul,
+ol {
+  margin-bottom: $spacing-md;
+
+  li {
+    margin-bottom: $spacing-sm;
+  }
+}
+
+// Buttons
+button,
+.btn {
+  font-family: $font-primary;
+  font-size: $font-size-base;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  border-radius: $radius-md;
+  padding: $spacing-md $spacing-lg;
+  transition: all $transition;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, $accent-yellow 0%, $accent-cyan 100%);
+  color: $bg-dark;
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: $shadow-glow;
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+}
+
+.btn-secondary {
+  background: transparent;
+  color: $accent-yellow;
+  border: 2px solid $accent-yellow;
+
+  &:hover:not(:disabled) {
+    background: $accent-yellow;
+    color: $bg-dark;
+    transform: scale(1.05);
+  }
+}
+
+.btn-ghost {
+  background: transparent;
+  color: $text-white;
+  border: 1px solid $border-color;
+
+  &:hover:not(:disabled) {
+    border-color: $accent-yellow;
+    color: $accent-yellow;
+  }
+}
+
+// Form elements
+input,
+textarea,
+select {
+  font-family: $font-primary;
+  font-size: $font-size-base;
+  background: rgba($bg-darker, 0.5);
+  border: 1px solid $border-color;
+  border-radius: $radius-md;
+  color: $text-white;
+  padding: $spacing-md;
+  transition: all $transition;
+
+  &::placeholder {
+    color: $text-gray;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $accent-yellow;
+    box-shadow: 0 0 10px rgba($accent-yellow, 0.2);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+// Code blocks
+code,
+pre {
+  background: rgba($bg-darker, 0.7);
+  border: 1px solid $border-color;
+  border-radius: $radius-md;
+  font-family: 'Courier New', monospace;
+  color: $accent-yellow;
+  padding: $spacing-sm;
+  overflow-x: auto;
+  @include custom-scrollbar;
+}
+
+pre {
+  padding: $spacing-md;
+}
+
+// Utility classes
+.container {
+  @include container;
+}
+
+.section {
+  padding: 5rem 0;
+
+  @media (max-width: $tablet) {
+    padding: 3rem 0;
+  }
+
+  @media (max-width: $mobile) {
+    padding: 2rem 0;
+  }
+
+  &.full-height {
+    min-height: 100vh;
+    @include flex-center;
+  }
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 3rem;
+
+  @media (max-width: $mobile) {
+    margin-bottom: 2rem;
+  }
+
+  .subtitle {
+    color: $text-gray;
+    font-size: $font-size-sm;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: $spacing-md;
+  }
+
+  h2 {
+    color: $text-white;
+    position: relative;
+    display: inline-block;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(90deg, $accent-yellow 0%, $accent-cyan 100%);
+      border-radius: 2px;
+    }
+  }
+}
+
+// Responsive images
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+// HR styling
+hr {
+  border: none;
+  border-top: 1px solid $border-color;
+  margin: $spacing-lg 0;
+}
+
+// Text utilities
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-primary {
+  color: $accent-yellow;
+}
+
+.text-white {
+  color: #fff;
+}
+
+.text-muted {
+  color: $text-gray;
+}
+
+.text-light {
+  color: $text-light-gray;
+}
+
+.text-highlight {
+  color: $accent-yellow;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+// Spacing utilities
+@for $i from 1 through 6 {
+  .mt-#{$i} {
+    margin-top: $spacing-md * $i;
+  }
+
+  .mb-#{$i} {
+    margin-bottom: $spacing-md * $i;
+  }
+
+  .p-#{$i} {
+    padding: $spacing-md * $i;
+  }
+}
+
+// Display utilities
+.hidden {
+  display: none !important;
+}
+
+.visible {
+  display: block !important;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+// Gradient background
+.gradient-bg {
+  background: linear-gradient(135deg, rgba($accent-yellow, 0.1) 0%, rgba($accent-cyan, 0.1) 100%);
+}
+
+// Loading animation
+.loading {
+  @include pulse;
+}
+
+// Menu open state
+body.menu-is-open {
+  overflow: hidden;
+}
+
+// Intro scroll animation (matching original Denzel pagePiling behavior)
+.section:not(#home) .intro {
+  opacity: 0;
+  transform: translateY(-40px);
+  transition: all 0.7s;
+}
+
+.section:not(#home) .intro.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+section {
+  min-height: 100vh;
+}
+
+// Print styles
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+
+  a {
+    color: black;
+    text-decoration: underline;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}

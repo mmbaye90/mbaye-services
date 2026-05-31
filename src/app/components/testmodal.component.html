@@ -1,0 +1,34 @@
+<section id="testmodal" class="testmodal section text-white" style="background-image:url('assets/images/bg/portfolio/imgPourTestModal.png')">
+  <div class="intro">
+    <div class="scroll-wrap">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 col-xl-5">
+            <span class="icon-quote text-primary">"</span>
+            <h2 class="title-uppercase text-white">Hey, this is <span class="text-primary">testimonials</span> from my best clients & partners</h2>
+          </div>
+          <div class="col-lg-5 col-xl-5 offset-lg-1 offset-xl-2">
+            <div class="carousel-testimonials">
+              <div class="testimonial-item" *ngFor="let testimonial of testimonials; let i = index"
+                   [class.active]="i === currentIndex">
+                <p class="mb-5">
+                  <strong class="h4 text-white mb-0">{{ testimonial.author }}</strong><br>
+                  {{ testimonial.company }}
+                </p>
+                <p>"{{ testimonial.text }}"</p>
+              </div>
+            </div>
+            <div class="carousel-nav">
+              <button class="carousel-btn prev" (click)="prev()">&#10094;</button>
+              <div class="carousel-indicators">
+                <span class="indicator" *ngFor="let t of testimonials; let i = index"
+                      [class.active]="i === currentIndex" (click)="goTo(i)"></span>
+              </div>
+              <button class="carousel-btn next" (click)="next()">&#10095;</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

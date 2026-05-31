@@ -1,0 +1,27 @@
+<section id="projects" class="projects section">
+  <div class="project-wrap">
+    <div class="bg-changer">
+      <div class="section-bg" *ngFor="let bg of projectBgs; let i = index"
+           [class.active]="i === activeBgIndex"
+           [style.background-image]="'url(' + bg + ')'"></div>
+    </div>
+    <div class="intro">
+      <div class="scroll-wrap">
+        <div class="container">
+          <h2 class="text-white">Latest projects</h2>
+          <div class="projects-grid">
+            <div class="col-project-box" *ngFor="let project of projects; let i = index"
+                 (mouseenter)="changeBg(i)">
+              <a href="#" class="project-box">
+                <div class="project-box-inner">
+                  <h4>{{ project.title }}</h4>
+                  <div class="project-category">{{ project.category }}</div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

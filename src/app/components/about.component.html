@@ -1,0 +1,26 @@
+<section id="about" class="about section">
+  <div class="intro">
+    <div class="scroll-wrap">
+      <div class="container">
+        <div class="about-row">
+          <div class="about-text">
+            <div class="about-label">{{ portfolioData?.about?.specialization }}</div>
+            <h2 [innerHtml]="portfolioData?.about?.description"></h2>
+            <div class="about-specializations">
+              <p *ngFor="let spec of portfolioData?.about?.specializations; let i = index">{{ (i + 1) | number:'2.0-0' }}. {{ spec }}</p>
+            </div>
+          </div>
+          <div class="about-image-col">
+            <div class="about-image-wrap" [style.backgroundImage]="'url(' + portfolioData?.about?.image + ')'">
+              <a href="#" class="icon-play"></a>
+              <div class="experience-info">
+                <div class="experience-number">{{ portfolioData?.about?.yearsExperience }}</div>
+                <div class="experience-text">YEARS<br>EXPERIENCE<br>WORKING</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

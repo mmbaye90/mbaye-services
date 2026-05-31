@@ -1,0 +1,33 @@
+<section id="skills" class="skills section">
+  <div class="intro">
+    <div class="scroll-wrap">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="skills-images-col">
+            <div class="position-relative">
+              <div class="photo-icon photo-icon-1" style="background-image: url('assets/images/placeholder.svg')"></div>
+              <div class="photo-icon photo-icon-2" style="background-image: url('assets/images/placeholder.svg')"></div>
+              <div class="photo-icon photo-icon-3" style="background-image: url('assets/images/placeholder.svg')"></div>
+              <div class="skills-main-img" style="background-image: url('assets/images/bg/portfolio/myPicture.png')"></div>
+            </div>
+          </div>
+          <div class="skills-content-col">
+            <h2>My mission is <span class="text-primary">develop</span> best design</h2>
+            <p>I will help you build your brand and grow your business. I create clarifying strategy, beautiful logo and identity design.</p>
+            <div class="progress-items">
+              <div class="progress-item" *ngFor="let skill of skills">
+                <div class="progress-header">
+                  <h6>{{ skill.name }}</h6>
+                  <h6 class="percentCount">{{ skill.percentage }}%</h6>
+                </div>
+                <div class="progress">
+                  <div class="progress-bar" [style.width.%]="skill.percentage"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

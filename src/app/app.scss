@@ -1,0 +1,16 @@
+@use '../styles/variables.scss' as *;
+
+:host {
+  display: block;
+  min-height: 100dvh;
+  background: linear-gradient(135deg, $bg-dark 0%, $bg-darker 100%);
+  color: $text-white;
+  font-family: $font-primary;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+main {
+  height: auto;
+  overflow: visible;
+}

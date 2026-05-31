@@ -1,0 +1,10 @@
+<section id="home" class="hero" [style.backgroundImage]="'url(' + portfolioData?.hero?.image + ')' ">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-text-col">
+      <div class="hero-subtitle">{{ portfolioData?.hero?.subtitle }}</div>
+      <h1 class="hero-title" [innerHTML]="portfolioData?.hero?.title"></h1>
+      <div class="hero-line"></div>
+    </div>
+  </div>
+</section>

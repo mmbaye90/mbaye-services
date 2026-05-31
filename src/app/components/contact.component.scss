@@ -1,0 +1,105 @@
+@use '../../styles/variables.scss' as *;
+
+.contact {
+  position: relative;
+  background: linear-gradient(135deg, $bg-dark, #1a1a2e);
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+  }
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+  .contact-row {
+    display: flex;
+    gap: 4rem;
+    @media (max-width: $desktop) {
+      flex-direction: column;
+      gap: 3rem;
+    }
+  }
+  .contact-info-col {
+    flex: 0 0 35%;
+    @media (max-width: $desktop) {
+      flex: 0 0 100%;
+    }
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+    .text-muted {
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 3rem;
+    }
+    .contact-address,
+    .contact-phone {
+      color: #fff;
+      font-size: 1.3rem;
+      margin: 0 0 0.5rem 0;
+    }
+    .contact-email {
+      color: rgba(255, 255, 255, 0.6);
+      margin-top: 1rem;
+    }
+  }
+  .contact-form-col {
+    flex: 1;
+    h3 {
+      color: #fff;
+      font-size: 1.5rem;
+      margin: 0 0 2rem 0;
+      .text-primary {
+        color: $accent-yellow;
+      }
+    }
+    .contact-form {
+      .form-group {
+        margin-bottom: 1.5rem;
+        input,
+        textarea {
+          width: 100%;
+          padding: 0.75rem 1rem;
+          background: transparent;
+          border: none;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+          color: #fff;
+          font-size: 1rem;
+          outline: none;
+          transition: border-color 0.3s ease;
+          &::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+          }
+          &:focus {
+            border-color: $accent-yellow;
+          }
+        }
+        textarea {
+          resize: vertical;
+        }
+        .btn {
+          padding: 0.75rem 2.5rem;
+          background: transparent;
+          border: 1px solid $accent-yellow;
+          color: $accent-yellow;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          font-size: 0.9rem;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          &:hover:not(:disabled) {
+            background: $accent-yellow;
+            color: #000;
+          }
+          &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+          }
+        }
+      }
+    }
+  }
+}

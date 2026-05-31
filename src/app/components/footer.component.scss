@@ -1,0 +1,95 @@
+@use '../../styles/variables.scss' as *;
+@use '../../styles/mixins.scss' as *;
+
+.footer {
+  background: $bg-darker;
+  border-top: 1px solid $border-color;
+  padding: 2rem 0;
+  margin-top: 3rem;
+  .footer-content {
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: center;
+      @media (max-width: $mobile) {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+    }
+  }
+  .footer-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    @media (max-width: $mobile) {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+  .footer-section {
+    .social-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+      li a {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        border: 2px solid $accent-yellow;
+        border-radius: 50%;
+        @include flex-center;
+        color: $accent-yellow;
+        text-decoration: none;
+        font-size: 0.75rem;
+        transition: all $transition;
+        &:hover {
+          background: $accent-yellow;
+          color: $bg-dark;
+          transform: scale(1.1);
+        }
+      }
+      @media (max-width: $mobile) {
+        justify-content: center;
+      }
+    }
+    p {
+      margin: 0;
+      font-size: $font-size-sm;
+      color: $text-gray;
+    }
+  }
+  .footer-languages {
+    ul {
+      list-style: none;
+      display: flex;
+      justify-content: flex-end;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+      @media (max-width: $mobile) {
+        justify-content: center;
+      }
+      li a {
+        color: $text-gray;
+        text-decoration: none;
+        font-size: $font-size-sm;
+        font-weight: 600;
+        letter-spacing: 1px;
+        transition: all $transition;
+        &.active {
+          color: $accent-yellow;
+        }
+        &:hover {
+          color: $accent-cyan;
+        }
+      }
+    }
+  }
+}

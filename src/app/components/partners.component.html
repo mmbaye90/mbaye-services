@@ -1,0 +1,14 @@
+<section id="partners" class="partners section">
+  <div class="intro">
+    <div class="scroll-wrap">
+      <div class="container">
+        <h2><span class="text-primary">Best</span> Partners</h2>
+        <div class="partners-grid">
+          <div class="col-partner" *ngFor="let partner of portfolioData?.partners; let i = index">
+            <img [src]="partner.logo" [alt]="partner.name">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
