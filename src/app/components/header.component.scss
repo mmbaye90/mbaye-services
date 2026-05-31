@@ -130,11 +130,11 @@ $yellow: #D4F21B;
   padding: 0.35rem 0.75rem;
   border-radius: 0.375rem;
   font-family: 'Karla', sans-serif;
-  font-size: 0.8rem;
+  font-size: .8rem;
   font-weight: 600;
-  color: #fff;
+  color: #343434;
   text-decoration: none;
-  border: 1px solid rgba(255,255,255,0.25);
+  border: .8px solid whitesmoke;
   transition: all 0.2s ease;
   vertical-align: middle;
   z-index: 10;
@@ -144,7 +144,8 @@ $yellow: #D4F21B;
     color: #fff;
   }
   svg {
-    display: block;
+    display: flex;
+    color: #343434;
   }
   @media (max-width: 1500px) {
     margin-left: 1.5rem;

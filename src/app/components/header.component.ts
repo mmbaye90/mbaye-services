@@ -4,6 +4,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { PortfolioService } from '../services/portfolio.service';
 import { PortfolioData } from '../models/portfolio.model';
 import { SOCIAL_ICONS } from '../utils/social-icons';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -15,6 +16,7 @@ import { SOCIAL_ICONS } from '../utils/social-icons';
 export class HeaderComponent implements OnInit {
   private portfolioService = inject(PortfolioService);
   private sanitizer = inject(DomSanitizer);
+  private router = inject(Router);
   isMenuOpen = false;
   portfolioData?: PortfolioData;
   currentYear = new Date().getFullYear();
@@ -51,5 +53,10 @@ export class HeaderComponent implements OnInit {
   getSocialIcon(name: string): SafeHtml {
     const svg = SOCIAL_ICONS[name.toLowerCase()] || '';
     return this.sanitizer.bypassSecurityTrustHtml(svg);
+  }
+
+
+  navigateToCv(): void {
+    this.router.navigate(['/cv.html']);
   }
 }

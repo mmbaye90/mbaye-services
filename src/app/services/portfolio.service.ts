@@ -10,9 +10,9 @@ const PLACEHOLDER = 'assets/images/placeholder.svg';
 export class PortfolioService {
   private portfolioData: PortfolioData = {
     hero: {
-      title: '<span class="text-primary">Hello,</span> my name is Mbaye.',
-      subtitle: 'I\'m Product Designer',
-      description: 'Crafting robust and scalable web applications with modern technologies',
+      title: '<span class="text-primary">Hello,</span> my name is MBAYE',
+      subtitle: "I am a web and mobile application developer and designer",
+      description: 'Crafting and designing robust and scalable web and mobile applications with modern technologies',
       image: 'assets/images/bg/portfolio/myPicture.png'
     },
     about: {
@@ -156,9 +156,9 @@ export class PortfolioService {
       }
     ],
     contact: {
-      address: 'Dakar, Sénégal',
-      phone: '(+221) 77 000 00 00',
-      email: 'mbaye.dev@gmail.com'
+      address: 'Paris, FRANCE',
+      phone: '(+33) 07 51 82 57 72',
+      email: 'mmbaye1@hotmail.fr'
     },
     socialMedia: [
       { name: 'Facebook', icon: 'facebook', url: '#' },
