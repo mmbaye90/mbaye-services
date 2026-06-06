@@ -3,7 +3,7 @@
 <nav class="navbar navbar-desctop">
   <div class="position-relative w-100">
     <a class="navbar-brand" href="#" (click)="scrollToSection('home')">MBAYE</a>
-    <a href="/cv.html" class="nav-link-cv" title="Voir le CV" (click)="navigateToCv()">
+    <a href="/cv.html" class="nav-link-cv" title="Voir le CV">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
         <polyline points="14 2 14 8 20 8"/>
@@ -18,7 +18,7 @@
       <span class="email">{{ portfolioData?.contact?.email }}</span>
     </div>
     <button class="toggler" (click)="toggleMenu()" [class.active]="isMenuOpen"
-            [attr.aria-label]="isMenuOpen ? 'Close menu' : 'Open menu'">
+            [attr.aria-label]="isMenuOpen ? ('nav.closeMenu' | translate) : ('nav.openMenu' | translate)">
       <span class="toggler-icon"></span>
       <span class="toggler-icon"></span>
       <span class="toggler-icon"></span>
@@ -46,25 +46,24 @@
   </svg>
 
   <ul class="language">
-    <li class="active"><a href="#">ENG</a></li>
-    <li><a href="#">FRA</a></li>
-    <li><a href="#">GER</a></li>
+    <li [class.active]="currentLang === 'en'"><a href="#" (click)="$event.preventDefault(); switchLanguage('en')">ENG</a></li>
+    <li [class.active]="currentLang === 'fr'"><a href="#" (click)="$event.preventDefault(); switchLanguage('fr')">FRA</a></li>
   </ul>
 
   <ul class="navbar-nav navbar-nav-mobile">
-    <li><a class="nav-link" data-menuanchor="home" href="#home" (click)="scrollToSection('home')">Home</a></li>
-    <li><a class="nav-link" data-menuanchor="about" href="#about" (click)="scrollToSection('about')">About</a></li>
-    <li><a class="nav-link" data-menuanchor="experience" href="#experience" (click)="scrollToSection('experience')">Experience</a></li>
-    <li><a class="nav-link" data-menuanchor="skills" href="#skills" (click)="scrollToSection('skills')">Skills</a></li>
-    <li><a class="nav-link" data-menuanchor="projects" href="#projects" (click)="scrollToSection('projects')">Projects</a></li>
-    <li><a class="nav-link" data-menuanchor="partners" href="#partners" (click)="scrollToSection('partners')">Partners</a></li>
-    <li><a class="nav-link" data-menuanchor="testimonials" href="#testimonials" (click)="scrollToSection('testimonials')">Testimonials</a></li>
-    <li><a class="nav-link" data-menuanchor="news" href="#blog" (click)="scrollToSection('blog')">News</a></li>
-    <li><a class="nav-link" data-menuanchor="contact" href="#contact" (click)="scrollToSection('contact')">Contact</a></li>
-    <li><a class="nav-link" href="/cv.html" (click)="closeMenu()">CV</a></li>
+    <li><a class="nav-link" data-menuanchor="home" href="#home" (click)="scrollToSection('home')">{{ 'nav.home' | translate }}</a></li>
+    <li><a class="nav-link" data-menuanchor="about" href="#about" (click)="scrollToSection('about')">{{ 'nav.about' | translate }}</a></li>
+    <li><a class="nav-link" data-menuanchor="experience" href="#experience" (click)="scrollToSection('experience')">{{ 'nav.experience' | translate }}</a></li>
+    <li><a class="nav-link" data-menuanchor="skills" href="#skills" (click)="scrollToSection('skills')">{{ 'nav.skills' | translate }}</a></li>
+    <li><a class="nav-link" data-menuanchor="projects" href="#projects" (click)="scrollToSection('projects')">{{ 'nav.projects' | translate }}</a></li>
+    <li><a class="nav-link" data-menuanchor="partners" href="#partners" (click)="scrollToSection('partners')">{{ 'nav.partners' | translate }}</a></li>
+    <li><a class="nav-link" data-menuanchor="testimonials" href="#testimonials" (click)="scrollToSection('testimonials')">{{ 'nav.testimonials' | translate }}</a></li>
+    <li><a class="nav-link" data-menuanchor="news" href="#blog" (click)="scrollToSection('blog')">{{ 'nav.blog' | translate }}</a></li>
+    <li><a class="nav-link" data-menuanchor="contact" href="#contact" (click)="scrollToSection('contact')">{{ 'nav.contact' | translate }}</a></li>
+    <li><a class="nav-link" href="/cv.html" (click)="closeMenu()">{{ 'nav.cv' | translate }}</a></li>
   </ul>
 
   <div class="navbar-mobile-footer">
-    <p>&copy; Mbaye. {{ currentYear }}. All Rights Reserved.</p>
+    <p>&copy; Mbaye. {{ currentYear }}. {{ 'footer.rights' | translate }}</p>
   </div>
 </nav>

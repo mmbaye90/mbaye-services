@@ -4,30 +4,30 @@
       <div class="container">
         <div class="contact-row">
           <div class="contact-info-col">
-            <h2 class="text-white">Contact</h2>
-            <p class="text-muted">You'll called for yielding male, so lights Stars abundantly, is their.</p>
+            <h2 class="text-white">{{ 'contact.title' | translate }}</h2>
+            <p class="text-muted">{{ 'contact.desc' | translate }}</p>
             <h3 class="contact-address">{{ contactInfo?.address }}</h3>
             <h3 class="contact-phone">{{ contactInfo?.phone }}</h3>
             <p class="contact-email">{{ contactInfo?.email }}</p>
           </div>
           <div class="contact-form-col">
-            <h3>Let's grab a coffee and jump on conversation <span class="text-primary">chat with me.</span></h3>
+            <h3>{{ 'contact.chat' | translate }} <span class="text-primary">{{ 'contact.chat.highlight' | translate }}</span></h3>
             <form #contactForm="ngForm" (ngSubmit)="onSubmit()" class="contact-form">
               <div class="form-group">
-                <input type="text" name="name" class="form-control" placeholder="Name"
+                <input type="text" name="name" class="form-control" [placeholder]="'contact.name' | translate"
                        [(ngModel)]="formData.name" required>
               </div>
               <div class="form-group">
-                <input type="email" name="email" class="form-control" placeholder="Email *"
+                <input type="email" name="email" class="form-control" [placeholder]="'contact.email' | translate"
                        [(ngModel)]="formData.email" required>
               </div>
               <div class="form-group">
-                <textarea rows="3" name="message" class="form-control" placeholder="Message"
+                <textarea rows="3" name="message" class="form-control" [placeholder]="'contact.message' | translate"
                           [(ngModel)]="formData.message" required></textarea>
               </div>
               <div class="form-group">
                 <button type="submit" class="btn" [disabled]="loading || contactForm.invalid">
-                  {{ loading ? 'Sending...' : 'Contact me' }}
+                  {{ loading ? ('contact.sending' | translate) : ('contact.submit' | translate) }}
                 </button>
               </div>
             </form>

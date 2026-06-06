@@ -8,7 +8,7 @@
     <div class="intro">
       <div class="scroll-wrap">
         <div class="container">
-          <h2 class="text-white">Latest projects</h2>
+          <h2 class="text-white">{{ 'projects.title' | translate }}</h2>
           <div class="projects-grid">
             <div class="col-project-box" *ngFor="let project of projects; let i = index"
                  (mouseenter)="changeBg(i)">

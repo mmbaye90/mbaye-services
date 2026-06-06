@@ -5,12 +5,14 @@ import { HttpClient } from '@angular/common/http';
 import { PortfolioService } from '../services/portfolio.service';
 import { ContactInfo, PortfolioData } from '../models/portfolio.model';
 import { ToastService } from '../services/toast.service';
+import { LanguageService } from '../services/language.service';
+import { TranslatePipe } from '../pipes/translate.pipe';
 import { WEB3FORMS_KEY } from '../../env';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, TranslatePipe],
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss']
 })
@@ -18,6 +20,7 @@ export class ContactComponent implements OnInit {
   private portfolioService = inject(PortfolioService);
   private http = inject(HttpClient);
   private toast = inject(ToastService);
+  private languageService = inject(LanguageService);
 
   contactInfo?: ContactInfo;
   portfolioData?: PortfolioData;
@@ -47,20 +50,20 @@ export class ContactComponent implements OnInit {
     fd.append('name', this.formData.name);
     fd.append('email', this.formData.email);
     fd.append('message', this.formData.message);
-    fd.append('subject', 'Portfolio Contact - Nouveau message de ' + this.formData.name);
+    fd.append('subject', this.languageService.translate('toast.subject') + ' ' + this.formData.name);
 
     this.http.post<{ success: boolean; message?: string }>('https://api.web3forms.com/submit', fd).subscribe({
       next: (data) => {
         if (data.success) {
-          this.toast.show('Message sent successfully! I\'ll get back to you soon.', 'success');
+          this.toast.show(this.languageService.translate('toast.success'), 'success');
           this.formData = { name: '', email: '', message: '' };
         } else {
-          this.toast.show(data.message || 'Failed to send.', 'error');
+          this.toast.show(data.message || this.languageService.translate('toast.failed'), 'error');
         }
         this.loading = false;
       },
       error: (err) => {
-        this.toast.show('Network error. Please try again later.', 'error');
+        this.toast.show(this.languageService.translate('toast.networkError'), 'error');
         this.loading = false;
       }
     });

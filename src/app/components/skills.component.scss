@@ -167,6 +167,19 @@ $yellow: #D4F21B;
   }
 }
 
+.skills:not(.active) .progress-bar {
+  width: 0 !important;
+}
+
+.skills.active .progress-item {
+  &:nth-child(1) .progress-bar { transition-delay: 0.1s; }
+  &:nth-child(2) .progress-bar { transition-delay: 0.25s; }
+  &:nth-child(3) .progress-bar { transition-delay: 0.4s; }
+  &:nth-child(4) .progress-bar { transition-delay: 0.55s; }
+  &:nth-child(5) .progress-bar { transition-delay: 0.7s; }
+  &:nth-child(6) .progress-bar { transition-delay: 0.85s; }
+}
+
 @media (max-width: $desktop) {
   .skills {
     padding: 4rem 0;

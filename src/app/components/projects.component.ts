@@ -2,11 +2,12 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PortfolioService } from '../services/portfolio.service';
 import { Project } from '../models/portfolio.model';
+import { TranslatePipe } from '../pipes/translate.pipe';
 
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslatePipe],
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.scss']
 })

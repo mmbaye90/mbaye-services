@@ -13,15 +13,14 @@
         </div>
 
         <div class="footer-section">
-          <p>&copy; Mbaye. {{ currentYear }}. All Rights Reserved.</p>
+          <p>&copy; Mbaye. {{ currentYear }}. {{ 'footer.rights' | translate }}</p>
         </div>
       </div>
 
       <div class="footer-languages">
         <ul>
-          <li><a href="#" class="active">ENG</a></li>
-          <li><a href="#">FRA</a></li>
-          <li><a href="#">GER</a></li>
+          <li [class.active]="currentLang === 'en'"><a href="#" (click)="$event.preventDefault(); switchLanguage('en')">ENG</a></li>
+          <li [class.active]="currentLang === 'fr'"><a href="#" (click)="$event.preventDefault(); switchLanguage('fr')">FRA</a></li>
         </ul>
       </div>
     </div>

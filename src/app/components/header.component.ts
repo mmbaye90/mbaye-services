@@ -4,26 +4,31 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { PortfolioService } from '../services/portfolio.service';
 import { PortfolioData } from '../models/portfolio.model';
 import { SOCIAL_ICONS } from '../utils/social-icons';
-import { Router } from '@angular/router';
+import { LanguageService } from '../services/language.service';
+import { TranslatePipe } from '../pipes/translate.pipe';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslatePipe],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
   private portfolioService = inject(PortfolioService);
   private sanitizer = inject(DomSanitizer);
-  private router = inject(Router);
+  private languageService = inject(LanguageService);
   isMenuOpen = false;
   portfolioData?: PortfolioData;
   currentYear = new Date().getFullYear();
+  currentLang = this.languageService.getCurrentLang();
 
   ngOnInit(): void {
     this.portfolioService.getPortfolioData().subscribe(data => {
       this.portfolioData = data;
+    });
+    this.languageService.currentLang$.subscribe(lang => {
+      this.currentLang = lang;
     });
   }
 
@@ -55,8 +60,7 @@ export class HeaderComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustHtml(svg);
   }
 
-
-  navigateToCv(): void {
-    this.router.navigate(['/cv.html']);
+  switchLanguage(lang: 'en' | 'fr'): void {
+    this.languageService.switchLanguage(lang);
   }
 }
